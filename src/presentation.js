@@ -103,6 +103,21 @@ export default class Presentation extends React.Component {
           </div>
         </Slide>
         <Slide>
+          <Notes>
+            Lately, I've been traveling around the world to conferences and
+            workshops and I hear common themes emerge. Often the people I meet
+            are frontend developers. They're really excited about GraphQL and
+            all the benefits they'd stand to gain but they're having trouble
+            adopting it in their own organization. These frontend developers are
+            also usually concerned about building a GraphQL server.
+            <br />
+            <br />
+            On the other hand, the backend developers are usually not as
+            excited. They're more skeptical and rightfully so since GraphQL's
+            focus on the product represents a huge shift in their workflow.
+            They're mostly concerned about performance, caching, and maintaining
+            control over their services.
+          </Notes>
           <Heading>The road to adoption 🛣</Heading>
           <Image src={images.frontend} style={{ maxHeight: '45%' }} />
           <Appear>
@@ -113,6 +128,11 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
         <Slide>
+          <Notes>
+            This disagreement between frontend and backend engineers can stall
+            progress on GraphQL adoption for months, or maybe even years as was
+            the case at Airbnb. We need a way to find a compromise here.
+          </Notes>
           <Image src={images.airbnb} width="100%" />
           <Link
             style={{ alignSelf: 'flex-end' }}
@@ -130,41 +150,63 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            As frontend developers, the apps we build are increasingly data
-            driven. We're building for mobile, wearables, VR, IOT - all separate
-            clients requesting data from a multitude of different microservices.
-            We have to meet our users where they are so we have to keep building
-            for new platforms. Over time, this starts to get messy.
+            The benefits of GraphQL are hard to deny. We're building for mobile,
+            wearables, VR, IOT - all separate clients requesting data from a
+            multitude of different microservices. We have to meet our users
+            where they are so we have to keep building for new platforms and
+            duplicating logic across clients. GraphQL prevents this situation
+            from spiraling out of control.
           </Notes>
           <Heading>Our apps are data driven</Heading>
           <Image src={images.dataDriven} width="100%" />
         </Slide>
         <Slide>
           <Notes>
-            In fact, we recommend starting with the schema first. This is called
-            schema driven development and it allows teams to develop
-            independently while using the schema as a contract. One team can
-            work on hooking up the schema's resolvers to the appropriate
-            backends. While they're working on that, the frontend team can mock
-            their schema which allows them to develop their UI without waiting
-            on all of the data.
+            GraphQL also fosters collaboration between frontend and backend
+            teams. When the schema is a contract that both sides can adhere to,
+            each side can work independently with a common goal in mind. The
+            frontend doesn't even need to wait on backend changes to be
+            productive - they can mock out the schema and keep developing Query
+            components before the data fetching logic is finalized.
           </Notes>
           <Heading>GraphQL fosters collaboration</Heading>
           <Image src={images.sdd} width="100%" />
         </Slide>
         <Slide>
           <Notes>
-            And that solution is GraphQL and Apollo. Instead of writing complex
-            code for fetching and transforming the data into the shape you need,
-            you just create a GraphQL query and bind it to your UI using
-            Apollo's Query component. Apollo Client will take care of making the
-            request, caching it, tracking loading and error state, as well as
-            updating your UI.
+            Perhaps one of the greatest benefits is how GraphQL clients can
+            reduce the complexity managing state from within your application.
+            Instead of writing complex code for fetching and transforming the
+            data into the shape you need, you just create a GraphQL query.
+            Apollo client will take care of making the request, caching it,
+            tracking loading and error state, as well as updating your UI.
+            Whether your favorite client is Apollo, Relay, or Urql, I think we
+            all can agree that managing state with any GraphQL client is a hell
+            of a lot better than rolling your own solution with REST and Redux.
           </Notes>
           <Heading>Apollo reduces complexity</Heading>
           <Image src={images.complexity} width="95%" />
         </Slide>
         <Slide>
+          <Notes>
+            So how do we bridge the gap between frontend and backend developers?
+            To figure out a solution, we have to look at their motivations and
+            find some common ground.
+            <br />
+            <br />
+            Frontend devs want to have a say in what happens with their GraphQL
+            API because they're the ones using it. Often, they're also the ones
+            tasked with building an initial server implementation or POC, so
+            they need an excellent out of the box server experience. They also
+            are heavily concerned with identifying and following best practices
+            for things like auth, testing, and schema design.
+            <br />
+            <br />
+            On the other hand, backend developers want to ensure that their
+            underlying services won't suffer performance hits as a result of
+            introducing GraphQL. They're worried about things caching and
+            monitoring.
+          </Notes>
           <Heading>Bridging the gap</Heading>
           <Appear>
             <Image src={images.frontend2} style={{ maxHeight: '45%' }} />
@@ -177,6 +219,16 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
         <Slide bgImage={images.moon}>
+          <Notes>
+            Their common ground here is the server. If we can design a better
+            server experience, complete with advanced tooling to satisfy backend
+            developers and a great getting started experience for the frontend
+            developers, maybe we can speed up GraphQL adoption as a whole.
+            <br />
+            <br />
+            At Apollo, this is exactly what was on our mind as we started to
+            plan the next generation of Apollo Server.
+          </Notes>
           <Heading
             textColor="primary"
             style={{
@@ -202,18 +254,12 @@ export default class Presentation extends React.Component {
           <Notes>
             Up until now, I've used the term GraphQL server but sometimes I
             think the word server can be intimidating, especially for frontend
-            developers. I think it's more accurate to call it a GraphQL layer
-            since it sits on top of your existing data sources. Instead of
-            defining a specific APIs for each relationship between a client and
-            a service — which means writing and maintaining code — with graphql
-            the services describe the data they have, apps describe the data
-            they need, and there's a layer between them — that's apollo server —
-            that manages how that data moves between the two.
-            <br />
-            <br />
-            GraphQL APIs are at their best when they're built by the product
-            teams that are using them, which is why we've lowered the barrier to
-            entry with our latest release of Apollo Server.
+            developers just getting started. I think it's more accurate to call
+            it a GraphQL layer since it often sits on top of your existing data
+            sources. We need to lower the barrier of entry to building this
+            layer so its achievable by product teams, since GraphQL APIs are at
+            their best when the product team using them has input into the
+            design.
           </Notes>
           <Heading>
             GraphQL{' '}
@@ -223,14 +269,14 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            It turns out that layering GraphQL on top of REST can fix a lot of
-            REST's shortcomings. That's the awesome thing about switching to
-            GraphQL - it doesn't require an entire rewrite. You can migrate
-            incrementally by building a GraphQL server over your existing REST
-            endpoints and microservices. When backend developers don't have to
-            worry about creating a new REST endpoint for every data combination,
-            they can actually start to architect their REST APIs in a more
-            thoughtful way.
+            Layering GraphQL on top of REST is many developers' first experience
+            with GraphQL, so we wanted to make this experience better. One of
+            the best parts of GraphQL is that it doesnt require an entire
+            rewrite. You can migrate incrementally and rather quickly by
+            building a GraphQL server over your existing REST endpoints. One
+            common pain point is caching however. Teams don't want to have to
+            totally reimplement their existing caching logic when switching to
+            GraphQL.
           </Notes>
           <Heading>GraphQL over REST</Heading>
           <Layout.Row align="flex-start">
@@ -242,7 +288,7 @@ export default class Presentation extends React.Component {
                 {[
                   'Start with the APIs you already have & migrate incrementally',
                   'Fastest path to adoption for product developers',
-                  'Existing caching strategies already in place',
+                  'What about existing caching strategies already in place?',
                 ].map(item => (
                   <ListItem key={item} textSize={size.small}>
                     {item}
@@ -253,7 +299,13 @@ export default class Presentation extends React.Component {
           </Layout.Row>
         </Slide>
         <Slide>
-          <Notes>blah</Notes>
+          <Notes>
+            Additionally, we needed a better out of the box experience. We were
+            inspired by what Prisma did with graphql-yoga to connect the dots
+            between APollo Server, graphql-tools and graphql-subscriptions to
+            create an excellent getting started experience for GraphQL beginners
+            and seasoned experts.
+          </Notes>
           <Heading>A simpler API</Heading>
           <Layout.Row align="center">
             <CodePane
@@ -268,11 +320,13 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide bgImage={images.moon}>
           <Notes>
-            The only thing left standing in our way is the GraphQL server. This
-            is often the most intimidating part of implementing GraphQL, but
-            we've been working hard to make building this GraphQL server
-            approachable enough for a frontend developer to own the entire
-            process from start to finish.
+            Ultimately, our goal for the next version of Apollo Server was to
+            make developing this GraphQL layer approachable for everyone. We
+            wanted to enable product developers to get GraphQL running quickly
+            and give them the confidence they needed in order to actually ship
+            their layer to production. With this goal in mind, we set out to
+            totally revamp the Apollo Server experience. After a few weeks in
+            beta and hearing all of your feedback, we're so excited to announce
           </Notes>
           <Heading
             textColor="primary"
@@ -292,6 +346,11 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
         <Slide bgImage={images.moon}>
+          <Notes>
+            that Apollo Server 2.0 is officially out of beta!! If you haven't
+            tried it yet, I think you're really going to love it. Let's take a
+            look at some of the new features
+          </Notes>
           <div style={{ alignSelf: 'center' }}>
             <Heading>Apollo Server 2.0</Heading>
             <Heading
@@ -310,17 +369,13 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            Apollo Server 2.0! We've completely revamped the getting started
-            experience with Apollo Server to make it as simple as possible. Just
-            pass in your schema to the typeDefs property and your resolver
-            functions that implement your schema. Apollo Server will take care
-            of all the heavy lifting for you, such as setting up an Express
-            server with subscriptions, file uploads, schema stitching, and all
-            the best practices already wired up for you. With the new release,
-            we've also created some new error primitives for common use cases
-            such as AuthorizationErrors which propogate throughout the stack.
-            We're shipping a release candidate on Friday so be sure to check it
-            out.
+            Instead of giving you separate tools that you'd have to fit together
+            yourself, Apollo Server wires everything up for you already based on
+            years of best practices. With only a couple lines of code, you can
+            set up an GraphQL server in minutes. Out of the box, you get an
+            Express server that includes our new error management features, as
+            well as a health check endpoint, and advanced features like
+            subscriptions and schema stitching already set up for you.
           </Notes>
           <Heading>Apollo Server 2.0 🎉</Heading>
           <Layout.Row>
@@ -344,6 +399,18 @@ export default class Presentation extends React.Component {
           </Layout.Row>
         </Slide>
         <Slide>
+          <Notes>
+            I want to talk a little about the new error handling primitives
+            because they not only improve the developer experience working with
+            GraphQL, they also get us to speak the same language about errors.
+            Now you can throw an AuthorizationError for example in a resolver.
+            This new error primitive uses the extensions.code property to
+            produce a human readable status code, which you can check in an
+            Apollo Link on the frontend to implement a reauth flow. For more
+            information, check out the announcement post by one of our interns
+            CLarence. I'll send out the links to the all the articles I
+            reference on my Twitter after the talk.
+          </Notes>
           <Heading>Intuitive error handling 🚀</Heading>
           <CodePane theme="light" source={server.errors} lang="js" />
           <Link href="https://dev-blog.apollodata.com/full-stack-error-handling-with-graphql-apollo-5c12da407210">
@@ -356,8 +423,84 @@ export default class Presentation extends React.Component {
           bgImage={images.annotatedPlayground}
           bgRepeat="no-repeat"
           bgSize="contain"
-        />
+        >
+          <Notes>
+            With Apollo Server 2.0, you also get GraphQL Playground
+            automatically set up for you. Shoutout to the Prisma team for their
+            hard work on GraphQL Playground, it continues to be my favorite way
+            to test queries and teach developers about GraphQL.
+          </Notes>
+        </Slide>
+        <Slide bgImage={images.moon}>
+          <Notes>
+            Also included in Apollo Server 2.0 are some production-ready
+            features guaranteed to please even the most skeptical backend
+            engineers on your team! We really wanted performance to be a first
+            class feature of Apollo Server 2.0, so we included response caching
+            via the cache controld directive and reporting to Apollo Engine.
+          </Notes>
+          <div style={{ alignSelf: 'center' }}>
+            <Heading>Production-ready features</Heading>
+            <Heading
+              size="4"
+              textColor="primary"
+              style={{
+                alignSelf: 'center',
+                fontWeight: 200,
+                letterSpacing: '3px',
+                lineHeight: 1.2,
+              }}
+            >
+              Caching and reporting to Apollo Engine,<br /> now included in
+              Apollo Server! 😍
+            </Heading>
+          </div>
+        </Slide>
         <Slide>
+          <Notes>
+            Apollo Engine is our cloud service that provides deep insights into
+            the performance of your GraphQL server. It has never been easier to
+            set up Engine than it is now. Just provide an API key as an
+            environment variable and Apollo Server will do all the heavy lifting
+            for you. Some of the great features that used to require the engine
+            proxy before are now enabled by default in Apollo Server. Another
+            one of those features is
+          </Notes>
+          <Image src={images.platform} width="100%" />
+        </Slide>
+        <Slide>
+          <Notes>
+            Automatic persisted queries! All you have to do to complete the
+            setup process is add the persisted queries link to your Apollo Link
+            chain. This allows you to send a hash instead of the full query
+            text, which improves network performance. It's also useful for
+            sending queries as GET requests, which allows you to cache them with
+            a CDN.
+          </Notes>
+          <Heading>Automatic persisted queries</Heading>
+          <Layout.Row style={{ margin: '50px 0 0 0' }}>
+            <Image src={images.persistedQueries} />
+            <List margin="0px 0px 0px 50px">
+              {[
+                'On the client, add Apollo Link Persisted Queries to turn on persisted queries',
+                'Hashed queries can be sent as GET requests, enabling CDN caching',
+              ].map(item => (
+                <ListItem textSize={size.small} key={item}>
+                  {item}
+                </ListItem>
+              ))}
+            </List>
+          </Layout.Row>
+        </Slide>
+        <Slide>
+          <Notes>
+            Don't worry if this sounds like a lot of information - We're also
+            excited to announce a new docs site for Apollo Server 2.0 which will
+            guide you through all the latest features! Jani, if you're tuning in
+            on the live stream, this one's for you. All the new features are
+            already documented and we're hoping to add more interactive examples
+            on Glitch in the weeks leading up to the final release.
+          </Notes>
           <Image
             src={images.jani}
             height="80%"
@@ -374,51 +517,11 @@ export default class Presentation extends React.Component {
           </Link>
         </Slide>
         <Slide bgImage={images.moon}>
-          <div style={{ alignSelf: 'center' }}>
-            <Heading>Apollo Engine</Heading>
-            <Heading
-              size="4"
-              textColor="primary"
-              style={{
-                alignSelf: 'center',
-                fontWeight: 200,
-                letterSpacing: '3px',
-                lineHeight: 1.2,
-              }}
-            >
-              The proxy is JavaScript & open source! 😍
-            </Heading>
-          </div>
-        </Slide>
-        <Slide>
           <Notes>
-            I'm really excited about the future of GraphQL and Apollo and its
-            potential to change how we think about data in our applications.
-            Whether you're a frontend developer at a small startup or large
-            enterprise, I think everyone can benefit from layering GraphQL over
-            their existing data sources, especially if you're aggregating data
-            from many places or transforming it on the frontend.
+            Where do we go from here? The last part of this talk is going to
+            cover how we see the future of GraphQL servers evolving over the
+            next year and how Apollo Server 2.0 moves us in that direction.
           </Notes>
-          <Image src={images.platform} width="100%" />
-        </Slide>
-        <Slide>
-          <Notes>blah</Notes>
-          <Heading>Automatic persisted queries</Heading>
-          <Layout.Row style={{ margin: '50px 0 0 0' }}>
-            <Image src={images.persistedQueries} />
-            <List margin="0px 0px 0px 50px">
-              {[
-                'On the client, add Apollo Link Persisted Queries to turn on persisted queries',
-                'Hashed queries can be sent as GET requests, enabling CDN caching',
-              ].map(item => (
-                <ListItem textSize={size.small} key={item}>
-                  {item}
-                </ListItem>
-              ))}
-            </List>
-          </Layout.Row>
-        </Slide>
-        <Slide bgImage={images.moon}>
           <Heading
             textColor="primary"
             style={{
@@ -441,6 +544,11 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
         <Slide bgImage={images.moon}>
+          <Notes>
+            Ultimately, our goal is to enable all developers, whether they're
+            frontend or backend, to create a product focused API and ship it to
+            production. What's next on the path toward that goal?
+          </Notes>
           <Heading
             textColor="primary"
             style={{
@@ -464,6 +572,20 @@ export default class Presentation extends React.Component {
           </Heading>
         </Slide>
         <Slide>
+          <Notes>
+            Wrapping a REST endpoint is often the fastest path to GraphQL
+            adoption, but the best way to achieve that hasn't always been clear
+            until now. I couldn't be more excited about the work Martijn has
+            been doing on the new Apollo Server Data Source API. It's a new way
+            to wrap REST endpoints that takes care of all the data fetching code
+            for you so you just have to worry about writing business logic. It
+            also comes with a shared cache in order to enable whole and partial
+            query caching. One of the coolest features is that it picks up on
+            existing cache hints from within your REST response's headers so you
+            can reuse existing caching logic if you'd like. You also have the
+            option of specifying cache hints on the schema using the
+            cachecontrol directive.
+          </Notes>
           <Layout.Row align="center">
             <Image src={images.dataSource} width="40%" margin="0 40px 0 0" />
             <Layout.Column>
@@ -486,13 +608,17 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            Another cool new feature in Apollo Server 2.0 that you can't get
-            with any other language server is our new data source API, which
-            simplifies layering a GraphQL API over your existing endpoints. It
-            takes care of all the difficult parts for you, including resource
-            caching that you used to have to do with DataLoader, already wired
-            up for you. The data source interacts with a shared cache between
-            each request which is what enables partial query caching.
+            Let's take a look at an example! Just extend from the REST data
+            source class and you'll have access to data fetching primitives, as
+            well as the context if you'd like to set headers from within the
+            data source.
+            <br />
+            We're also planning on introducing features like error metrics and
+            tracing grouped by data source, which will allow you to gain full
+            visibility into what's happening with your data sources in Apollo
+            Engine. The new data source API is available for you to play with in
+            the new release candidate - definitely try it out and let us know
+            what you think!
           </Notes>
           <Heading>Apollo Server Data Source</Heading>
           <Layout.Row>
@@ -507,7 +633,7 @@ export default class Presentation extends React.Component {
               {[
                 'Includes data fetching primitives so you only have to supply an endpoint',
                 'Allows developers to focus on business logic',
-                'Coming soon: batching, deduplication, error handling, tracing 🙌',
+                'Coming soon: deduplication, error handling, per source tracing & metrics 🙌',
               ].map((item, idx) => (
                 <ListItem bold={idx === 3} textSize={size.small} key={item}>
                   {item}
@@ -518,12 +644,13 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            I've used the term partial query caching before, let's see what this
-            actually looks like. It's helpful for data that's a mix of static
-            and dynamic, for example, we have mostly static movie data with a
-            dynamic playback rate attached. Here's what this query looks like
-            when you first run it. Notice all the resolver timings at the
-            bottom.
+            I've used the term partial query caching a couple times, let's see
+            what it actually looks like. It's helpful for data that's a mix of
+            static and dynamic, for example, we have mostly static movie data
+            with a dynamic playback rate attached. This query is calling a REST
+            endpoint wrapped with the Apollo Server data source API. Here's what
+            this query looks like when you first run it. Notice all the resolver
+            tracing metrics at the bottom.
           </Notes>
           <Image src={images.pq1} width="100%" height="100%" />
         </Slide>
@@ -538,15 +665,14 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            But what about when you need to make changes to your GraphQL API?
-            How do we ensure that changes to our schema don't break our UI?
-            That's where Apollo Engine's schema management tools come in. Just
-            specify a list of validation rules for your schema and Apollo Engine
-            will check each change you make against those rules. This allows you
-            to refactor, add fields, deprecate fields, and clean up code with
-            confidence that you haven't broken anything. Our schema validation
-            integrates with GitHub so it's a natural part of your existing CI
-            workflow.
+            Data Sources simplify server development at the bottom of the stack,
+            but what can we do to simplify development at the schema level? How
+            do we ensure that changes to our schema don't break our UI? That's
+            where Apollo's new schema management tools come in. Just specify a
+            list of validation rules for your schema and Apollo Server will
+            check each change you make against those rules. This allows you to
+            refactor, add fields, deprecate fields, and clean up code with
+            confidence that you haven't broken anything.
           </Notes>
           <Layout.Row align="center">
             <Image
@@ -556,11 +682,11 @@ export default class Presentation extends React.Component {
             />
             <Layout.Column>
               <Heading style={{ textAlign: 'left' }} margin="0 0 50px 50px">
-                Apollo Engine schema diffing
+                Collaboration across the stack
               </Heading>
               <List margin="0 0 0 50px">
                 {[
-                  'Validates your schema against a set of rules to prevent breaking changes',
+                  'New tools to validate your schema and existing queries against a set of rules to prevent breaking changes',
                   'Integrates with GitHub as a part of your CI workflow',
                 ].map(item => (
                   <ListItem textSize={size.small} key={item}>
@@ -573,25 +699,61 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            How do you determine what to refactor in your schema? Apollo Engine
-            provides field by field monitoring for your entire schema that
-            allows you to see how often a field is used and how much time it
-            takes to resolve. This can be useful for identifying areas to
-            optimize your GraphQL API.
+            {' '}
+            Our schema validation integrates with GitHub so it's a natural part
+            of your existing CI workflow. We hope to create even more natural
+            extension points in your editor and beyond to optimize collaboration
+            between frontend and backend engineers.
+          </Notes>
+          <Image
+            src={images.github}
+            width="90%"
+            style={{
+              alignSelf: 'center',
+              border: `1px solid ${colors.secondary}`,
+            }}
+          />
+        </Slide>
+        <Slide>
+          <Notes>
+            Not only will backend engineers love our new schema collaboration
+            features, they can also take advantage of schema monitoring from
+            within Apollo Engine in order to determine which queries need
+            optimization. Apollo Engine provides field by field monitoring for
+            your entire schema that allows you to see how often a field is used
+            and how much time it takes to resolve.
           </Notes>
           <Heading>Apollo Engine schema analysis</Heading>
           <Image src={images.engine} width="100%" />
         </Slide>
         <Slide>
           <Notes>
+            Many teams have told us they want better tools for managing their
+            schemas, so we're excited to see where this is heading in the next
+            couple months. We see a sample workflow looking like this. If a
+            frontend developer wants to add a field based on the needs of their
+            UI, they can submit a pull request which alerts a backend engineer.
+            THe backend engineer can use our GitHub checks integration to ensure
+            that any schema changes are non-breaking. Then, they can use the
+            schema validation report combined with Apollo Engine schema metrics
+            to offer feedback on the change. We think this end to end workflow
+            will not only improve productivity but also collaboration between
+            both sides.
+          </Notes>
+          <Heading>Schema collaboration</Heading>
+          <Image src={images.collaboration} width="100%" />
+        </Slide>
+        <Slide>
+          <Notes>
             Another reason to use Apollo Server for your GraphQL layer is that
-            you'll be able to run it on the edge. This is something experimental
-            that we've been working on which is super cool. It uses Cloudflare's
-            new worker platform to run Apollo Server in a truly serverless
-            environment. This allows you to cache whole query responses from
-            within your CDN and partial responses on the edge, delivering data
-            to your users faster. If you'd like to be on the list for early
-            access, check out the link below
+            you'll be soon able to run it on the edge. This is something
+            experimental that we've been working on which is super cool. It uses
+            Cloudflare's new worker platform to run Apollo Server in a truly
+            serverless environment. This allows you to use the Data Source API
+            to cache whole query responses from within your CDN and partial
+            responses on the edge, delivering data to your users faster. If
+            you'd like to be on the list for early access, check out the link
+            below. We'd love to hear your feedback!
           </Notes>
           <Heading>GraphQL on the edge</Heading>
           <Layout.Row align="center">
@@ -611,12 +773,62 @@ export default class Presentation extends React.Component {
           </Layout.Row>
         </Slide>
         <Slide>
+          <Notes>
+            All of our ideas about what the future of GraphQL servers could look
+            like rollup to a greater goal, which is using GraphQL as a way to
+            unify the data within our applications. Here's what we see that
+            unification looking like.
+            <br />
+            <br />
+            Over time, your graphql layer isn't going to be a single server.
+            it'll be a group of services, each responsible for a portion of your
+            graphql schema and query execution. All layers will run various
+            builds and configurations of your Apollo server, all instrumented so
+            you understand precisely what data each client has requested. You'll
+            be able to know exactly where and how that request was serviced by a
+            particular Data Source, with all that data integrated into every
+            system that needs it. Ultimately, this architecture aims to give you
+            a 360 degree view of how all your data is flowing through your
+            system.
+          </Notes>
           <Image src={images.future} width="100%" />
         </Slide>
         <Slide>
+          <Notes>
+            With better visibility into our GraphQL APIs through a comprehensive
+            tooling story and reducing the steps it takes to build and deploy a
+            GraphQL layer into production, I think we'll be able to make both
+            frontend and backend teams happy in the end. Between Data Sources,
+            schema management, and running GraphQL on the edge, we're super
+            excited with this new direction and would love to hear your thoughts
+            on what the next generation of GraphQL servers could look like.
+          </Notes>
           <Image src={images.heart} width="100%" />
         </Slide>
         <Slide bgImage={images.moon}>
+          <Notes>
+            Finally, if you're looking for information to take back to your
+            team, definitely check out our new learning resource at
+            apollographql.com/docs. It features implementation guides for auth,
+            testing, schema design, state management as well as getting started
+            guides for Apollo Server 2.0 and Apollo Client.
+          </Notes>
+          <Heading
+            textColor="primary"
+            margin="0px"
+            style={{ alignSelf: 'center', lineHeight: 1.2 }}
+          >
+            Get started!
+          </Heading>
+          <Heading style={{ alignSelf: 'center', lineHeight: 1.2 }}>
+            apollographql.com/docs
+          </Heading>
+        </Slide>
+        <Slide bgImage={images.moon}>
+          <Notes>
+            If you have any questions, feel free to come find me or any members
+            of the Apollo team later today. Thank you!
+          </Notes>
           <Heading textColor="primary" style={{ alignSelf: 'center' }}>
             @peggyrayzis
           </Heading>

@@ -101,15 +101,16 @@ export const errors2 = `const client = new ApolloClient({
 export const dataSource = `class MovieAPI extends RESTDataSource {
   baseURL = 'https://movieapi.com/';
 
-  getProgram(id) {
-    return this.get(\`movies/\${id}\`);
-  }
-
   async getMostViewedMovies() {
     const body = await this.get('movies', {
       per_page: 10,
       order_by: 'most_viewed',
     });
     return body.results;
+  }
+  willSendRequest(request: Request) {
+    request.headers.set('Authorization',
+      this.context.token
+    );
   }
 }`;
