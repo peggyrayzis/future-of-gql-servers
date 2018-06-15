@@ -30,6 +30,7 @@ import collaboration from './assets/collaboration.png';
 import complexity from './assets/reduce-complexity.png';
 import persistedQueries from './assets/persisted-queries.png';
 import dataSource from './assets/data-source.png';
+import astroDaisy from './assets/astrodaisy-blank.png';
 
 export default {
   apolloLogo,
@@ -64,4 +65,5 @@ export default {
   persistedQueries,
   future,
   dataSource,
+  astroDaisy,
 };

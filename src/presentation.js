@@ -463,8 +463,8 @@ export default class Presentation extends React.Component {
             set up Engine than it is now. Just provide an API key as an
             environment variable and Apollo Server will do all the heavy lifting
             for you. Some of the great features that used to require the engine
-            proxy before are now enabled by default in Apollo Server. Another
-            one of those features is
+            proxy before are now enabled by default in Apollo Server. They're
+            100% open source. Another one of those features is
           </Notes>
           <Image src={images.platform} width="100%" />
         </Slide>
@@ -774,27 +774,6 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Notes>
-            All of our ideas about what the future of GraphQL servers could look
-            like rollup to a greater goal, which is using GraphQL as a way to
-            unify the data within our applications. Here's what we see that
-            unification looking like.
-            <br />
-            <br />
-            Over time, your graphql layer isn't going to be a single server.
-            it'll be a group of services, each responsible for a portion of your
-            graphql schema and query execution. All layers will run various
-            builds and configurations of your Apollo server, all instrumented so
-            you understand precisely what data each client has requested. You'll
-            be able to know exactly where and how that request was serviced by a
-            particular Data Source, with all that data integrated into every
-            system that needs it. Ultimately, this architecture aims to give you
-            a 360 degree view of how all your data is flowing through your
-            system.
-          </Notes>
-          <Image src={images.future} width="100%" />
-        </Slide>
-        <Slide>
-          <Notes>
             With better visibility into our GraphQL APIs through a comprehensive
             tooling story and reducing the steps it takes to build and deploy a
             GraphQL layer into production, I think we'll be able to make both
@@ -829,10 +808,29 @@ export default class Presentation extends React.Component {
             If you have any questions, feel free to come find me or any members
             of the Apollo team later today. Thank you!
           </Notes>
-          <Heading textColor="primary" style={{ alignSelf: 'center' }}>
-            @peggyrayzis
-          </Heading>
-          <Heading style={{ alignSelf: 'center' }}>@apollographql</Heading>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              alignSelf: 'center',
+            }}
+          >
+            <Image
+              src={images.astroDaisy}
+              height="500px"
+              margin="0 60px 0 0"
+              style={{ borderRadius: '50%' }}
+            />
+            <Layout.Column>
+              <Text margin="20px 0px 0px 0px" bold textColor="tertiary">
+                @peggyrayzis
+              </Text>
+              <Text margin="20px 0px 0px 0px" bold textColor="primary">
+                @apollographql
+              </Text>
+            </Layout.Column>
+          </div>
         </Slide>
       </Deck>
     );
