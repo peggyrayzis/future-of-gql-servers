@@ -2,10 +2,11 @@
 
 GraphQL is all about enabling frontend developers to build products faster. With Apollo Server 2.0, we've made GraphQL server development more approachable for product developers, thanks to a simpler API that works in every environment. In this talk, you'll not only learn about Apollo Server 2.0's exciting new features, you'll also hear Apollo's vision for the future of GraphQL servers, including a sneak peek of what's beyond 2.0.
 
+## 📹 [Watch the video!](https://youtu.be/_OTwfCbbVXU)
 ## 💻 [View the slides!](https://graphql-eu-apollo.surge.sh)
 
 ## Try Apollo Server 2.0
-- `npm i apollo-server@next`
+- `npm i apollo-server@rc`
 
 ## Further resources
 
